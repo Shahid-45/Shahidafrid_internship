@@ -1,1 +1,1 @@
-web: gunicorn crudd.wsgi
+web: gunicorn week2.wsgi
