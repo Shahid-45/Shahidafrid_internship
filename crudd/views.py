@@ -1,4 +1,7 @@
 from email.headerregistry import Address
+from email.mime import image
+from pickle import FALSE
+import profile
 from unicodedata import name
 from webbrowser import get
 from django.shortcuts import render,redirect
@@ -12,11 +15,12 @@ def index(request):
     return render(request, 'index.html', {'emp':emp})
 
 def addEmployee(request):
+    imgVal = request.FILES.get('profile')
     nameVal = request.POST.get('name')
     emailVal = request.POST.get('email')
     addressVal = request.POST.get('address')
     phoneVal = request.POST.get('phone')
-    employee(Name=nameVal, Email = emailVal, Address = addressVal, Phone = phoneVal).save()
+    employee(profile = imgVal,Name=nameVal, Email = emailVal, Address = addressVal, Phone = phoneVal).save()
     return redirect('/crud')
 
 def editEmployee(request,id):
@@ -24,7 +28,15 @@ def editEmployee(request,id):
     emailVal = request.POST.get('email')
     addressVal = request.POST.get('address')
     phoneVal = request.POST.get('phone')
-    employee(id=id,Name=nameVal, Email = emailVal, Address = addressVal, Phone = phoneVal).save()
+    if 'profile' in request.FILES:
+        imgVal = request.FILES.get('profile')
+        employee(id=id,profile = imgVal,Name=nameVal, Email = emailVal, Address = addressVal, Phone = phoneVal).save()
+    else:
+        img = employee.objects.filter(id=id)[0]
+        image = img.profile
+        employee(id=id,profile=image,Name=nameVal, Email = emailVal, Address = addressVal, Phone = phoneVal).save()
+
+    
     return redirect('/crud')
 
 def deleteEmployee(request,id):
@@ -44,3 +56,6 @@ def qr(request):
     else:
         pass
     return render(request,"qrcode.html",{'data':data})
+
+def cap(request):
+    return render(request,"captcha.html")

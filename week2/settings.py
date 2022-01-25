@@ -23,7 +23,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-*f+q0(s%%uzish8qiao64-zb#ei%2rmv1)zzqeyg&-guk&2i8u'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['shahidafridhasnabadi.herokuapp.com','127.0.0.1']
 
@@ -78,8 +78,12 @@ WSGI_APPLICATION = 'week2.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'intern',
+        'USER' : 'root',
+        'PASSWORD' : '1234',
+        'PORT' : '3306',
+        'HOST' : '127.0.0.1',
     }
 }
 
@@ -102,6 +106,8 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR,'media')
 
 # Internationalization
 # https://docs.djangoproject.com/en/3.2/topics/i18n/

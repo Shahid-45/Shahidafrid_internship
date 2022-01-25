@@ -11,9 +11,6 @@ urlpatterns = [
     path('deleteEmployee/<int:id>',views.deleteEmployee, name="deleteEmployee"),
     path('crud',views.index, name="crud"),
     path('qrgen',views.qr, name="qr"),
-
-    
-
-
-]
+    path('captcha',views.cap, name="cap")
+    ]
 

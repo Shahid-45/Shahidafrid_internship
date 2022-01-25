@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>captcha</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  <style>
+    /* Below line is used for online Google font */
+    @import url(http://fonts.googleapis.com/css?family=Raleway);
+
+    body {
+      background: linear-gradient(#696EFF 15%, #F8AcFF 100%);
+      height: 94%;
+    }
+
+    h2 {
+      background-color: #ffffff;
+      font-family: 'Courier New', Courier, monospace;
+      padding: 30px 35px;
+      margin: -10px -50px;
+      text-align: center;
+      border-radius: 10px 10px 0 0;
+    }
+
+    hr {
+      margin: 10px -50px;
+      border: 0;
+      /* border-top: 1px solid #ccc; */
+      margin-bottom: 40px;
+    }
+
+    div.container {
+      width: 900px;
+      height: 600px;
+      margin: 35px auto;
+      font-family: 'Raleway', sans-serif;
+      display: flex;
+      justify-content: center;
+    }
+
+    .main {
+      width: 500px;
+      padding: 10px 50px 25px ;
+      /* border: 2px solid gray; */
+      border-radius: 10px;
+      font-family: raleway;
+      float: left;
+      background-color: #ffffff;
+      box-shadow: 8px 8px 8px rgba(0, 0, 0, 0.4);
+    }
+
+    input[type=text],
+    input[type=password] {
+      width: 100%;
+      height: 20px;
+      padding: 5px;
+      margin-bottom: 25px;
+      margin-top: 5px;
+      border: 2px solid #ccc;
+      color: #615e5c;
+      font-size: 16px;
+      border-radius: 5px;
+      box-shadow: 8px 8px 8px rgba(0, 0, 0, 0.15);
+    }
+
+    /* label {
+            color: #464646;
+            text-shadow: 0 1px 0 #fff;
+            font-size: 14px;
+            font-weight: bold;
+        } */
+
+    center {
+      font-size: 32px;
+    }
+
+    /* .note {
+            color: red;
+        } */
+
+    /* .valid {
+            color: rgb(0, 0, 0);
+        } */
+
+    /* .back {
+            text-decoration: none;
+            border: 1px solid rgb(0, 143, 255);
+            background-color: rgb(0, 214, 255);
+            padding: 3px 20px;
+            border-radius: 2px;
+            color: black;
+        } */
+
+  .log {
+      font-size: 16px;
+      /* background: linear-gradient(#ffbc00 5%, #ffdd7f 100%); */
+      /* border: 1px solid #e5a900;
+            color: #4E4D4B; */
+      background-color: #4db2ec;
+      font-weight: bold;
+      cursor: pointer;
+      width: 109%;
+      margin-top: 200px;
+      border-radius: 5px;
+      padding: 20px 0;
+      outline: none;
+      box-shadow: 8px 8px 8px rgba(0, 0, 0, 0.15);
+      font-family: sans-serif;
+      letter-spacing: 5px;
+      color: #ffffff;
+
+    }
+
+    .reload-btn {
+      background-color: #4db2ec;
+      cursor: pointer;
+      width: 100%;
+      border-radius: 5px;
+      padding: 10px 0;
+      outline: none;
+      box-shadow: 8px 8px 8px rgba(0, 0, 0, 0.15);
+      font-family: sans-serif;
+      letter-spacing: 5px;
+      color: #ffffff;
+
+    }
+
+    /* input[type=button]:hover {
+            box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+        } */
+    .container .captcha-area {
+      height: 60px;
+      margin-top: 140px;
+      padding-top: 20px;
+    }
+
+    .captcha-area .captcha {
+      font-size: 78px;
+      color: #333;
+    }
+
+    .captcha-area .reload-btn {
+      width: 60px;
+      margin-left: 5px;
+      font-size: 20px;
+    }
+
+    .container .input-area {
+      height: 55px;
+    }
+
+    .check-btn {
+      height: 40px;
+      width: 100px;
+    }
+
+    .captcha-area .captcha-img {
+      width: 250px;
+  
+    }
+
+    /*  */
+    
+    .captcha-area {
+      display: flex;
+      height: 65px;
+      margin: 30px 20px;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .captcha-area .captcha-img {
+      height: 100%;
+      width: 345px;
+      user-select: none;
+      background: #000;
+      border-radius: 5px;
+      position: relative;
+    }
+
+    .captcha-img img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 5px;
+      opacity: 3;
+    }
+
+    .captcha-img .captcha {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      width: 100%;
+      color: #fff;
+      font-size: 35px;
+      text-align: center;
+      letter-spacing: 10px;
+      transform: translate(-50%, -50%);
+      text-shadow: 0px 0px 2px #b1b1b1;
+      font-family: 'Noto Serif', serif;
+    }
+
+    .container .log {
+      outline: none;
+      border: none;
+      color: #fff;
+      cursor: pointer;
+      background: #4db2ec;
+      border-radius: 5px;
+      transition: all 0.3s ease;
+    }
+
+    .container .log:hover {
+      background: #2fa5e9;
+    }
+
+    .captcha-area .reload-btn {
+      width: 75px;
+      height: 125%;
+      font-size: 25px;
+    }
+
+    .captcha-area .reload-btn i {
+      transition: transform 0.3s ease;
+    }
+
+    .captcha-area .reload-btn:hover i {
+      transform: rotate(15deg);
+    }
+
+    .container .input-area {
+      height: 60px;
+      width: 100%;
+      position: relative;
+    }
+
+    .input-area input {
+      width: 100%;
+      height: 100%;
+      outline: none;
+      padding-left: 20px;
+      font-size: 20px;
+      border-radius: 5px;
+      border: 1px solid #bfbfbf;
+    }
+
+    .input-area input:is(:focus, :valid) {
+      padding-left: 19px;
+      border: 2px solid #4db2ec;
+    }
+
+    .input-area input::placeholder {
+      color: #bfbfbf;
+    }
+
+    .check-btn {
+      position: absolute;
+      background-color: #4db2ec;
+      right: 7px;
+      left: 1;
+      top: 250%;
+      font-size: 17px;
+      letter-spacing: 1px;
+      box-shadow: 8px 8px 8px rgba(0, 0, 0, 0.15);
+      height: 45px;
+      outline: none;
+      padding: 0 20px;
+      color: #fff;
+      opacity: 0;
+      border-radius: 5px;
+      pointer-events: none;
+      transform: translateY(-50%);
+    }
+
+    .input-area input:valid+.check-btn {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .container .status-text {
+      display: none;
+      font-size: 18px;
+      text-align: center;
+      margin: 300px 0 -5px;
+    }
+  </style>
+
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+      <a class="navbar-brand" href="/">HOME</a>
+      <a class="navbar-brand" href="crud">CRUD</a>
+      <a class="navbar-brand" href="qrgen">QR Code</a>
+      <a class="navbar-brand" href="captcha">Captcha</a>
+    </nav>
+    <div>
+  <div class="container">
+    <div class="main">
+      <h2>Captcha</h2>
+      <br>
+      <form id="form_id" class="input-area">
+        <!-- <label>User Name :</label> -->
+        <input type="text" name="username" id="username" placeholder="Username" required />
+        <!-- <label>Password :</label> -->
+        <input type="password" name="password" id="password" placeholder="Password" required />
+        <!--  -->
+        <!--  -->
+        <button class="log" type="button" value="Login" id="submit" onclick="validate()"> Login</button>
+      </form>
+      <form action="#" class="input-area">
+        <div class="captcha-area">
+          <div class="captcha-img">
+            <img src="static/image/cap.png" alt="Captch Background">
+            <span class="captcha" id="captcha" style="color: #232; letter-spacing: 0pt;"></span>
+          </div>
+          <button class="reload-btn"><i class="fas fa-redo-alt"></i></button>
+        </div>
+        <input type="text" class="inp" placeholder="Enter captcha" maxlength="6" spellcheck="false" required>
+        <button class="check-btn" id="check-btn">Check</button>
+      </form>
+
+      <div class="status-text"></div>
+      <!-- <span>
+                <b class="note">Note : </b>For this demo use following username and password. <br />
+                <b class="valid">User Name : admin<br />Password : admin</b></span> -->
+    </div>
+  </div>
+  <!-- Include JS File Here -->
+  <script src="static/js/main.js"></script>
+</body>
+
+</html>

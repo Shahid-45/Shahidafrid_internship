@@ -8,34 +8,41 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
 <title>QR Code</title>
+<style>
+  body{
+    background: url('static/image/bg.jpg') no-repeat center center;
+    background-size: 130%;
+    background.opacity:0.4;
+  }
+  h1{
+    text-align:center;
+    justify-content:center;
+    margin-top:250px;
+    font-size:100px;
+    color:white;
+    font-family:'lucida sans';
+    text-shadow: 2px 2px #0000FF;
+  }
+  .navbar-brand{
+    text-shadow: 8px 8px 8px rgba(0,0,0,0.41);
+  }
+
+  .navbar-brand:hover{
+    color:black;
+  }
+</style>
 </head>
-<body style="background-color: antiquewhite;">
-    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-        <a class="navbar-brand" href="crud">CRUD</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarText">
-          <ul class="navbar-nav mr-auto">
-            <li class="nav-item active">
-              <a class="nav-link" href="qrgen">QR Code <span class="sr-only">(current)</span></a>
-            </li>
-            <!-- <li class="nav-item">
-              <a class="nav-link" href="#">Features</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">Pricing</a>
-            </li> -->
-          </ul>
-          <!-- <span class="navbar-text">
-            Navbar text with an inline element
-          </span> -->
-        </div>
+<body>
+    <nav class="navbar-brand">
+      <a class="navbar-brand" href="/" style = "font-size:35px; color: white;">HOME</a>
+      <a class="navbar-brand" href="crud" style = "font-size:35px; color: white">CRUD</a>
+      <a class="navbar-brand" href="qrgen" style = "font-size:35px; color: white">QR Code</a>
+      <a class="navbar-brand" href="captcha" style = "font-size:35px; color: white">Captcha</a>
       </nav>
-      <div>
+      <h1> Week 2 Report</h1>
+      {% comment %} <div>
         <h1 style="text-align: center; margin-top: 75px; color:black; background-color:yellowgreen">This is a Homepage</h1>
-        <p style="margin-left: 20px; margin-top: 50px;"><i>In this website i have done the <b>CRUD Operations</b> and <b>QR Code</b> generation and converting the data to <b>
-          Excel Sheet</b></i></p>
-      </div>
+        <p style="margin-left: 20px; margin-top: 50px;"><i>In this website i have done the <b>CRUD Operations</b> and <b>QR Code</b> generation</i></p>
+      </div> {% endcomment %}
 </body>
 </html>
